@@ -1,2 +1,8 @@
-# Samaksh-Sibin-Shivam-Yadav-Yash-Tanushree-Sakshi
-Laxmi Agencies Dehradun
+# Distributors Business Management Software
+
+## Samaksh
+## Sibin
+## Shivam Yadav
+## Yash
+## Tanushree
+## Sakshi
