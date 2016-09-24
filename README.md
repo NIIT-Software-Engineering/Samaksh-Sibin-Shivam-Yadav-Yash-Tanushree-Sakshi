@@ -1,8 +1,8 @@
 # Distributors Business Management Software
 
-## Samaksh
-## Sibin
+## Samaksh singhal
+## Sibin Kartik Tiwari
 ## Shivam Yadav
-## Yash
-## Tanushree
-## Sakshi
+## Yash Bhatambare
+## Tanushree Tumane
+## Sakshi Jain
