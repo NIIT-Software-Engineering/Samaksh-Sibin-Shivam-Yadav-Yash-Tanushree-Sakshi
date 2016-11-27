@@ -1,0 +1,47 @@
+﻿<Window x:Class="WpfApplication2.MainWindow"
+        Name="mainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApplication2"
+        
+        d:DesignHeight="600" d:DesignWidth="800" 
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="800" MinHeight="600" MinWidth="800" WindowStartupLocation="CenterScreen"
+        >
+    <Grid Background="LightGray">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Background="#4646ff">
+            <TextBlock Foreground="BlanchedAlmond" Name="headingText" FontWeight="ExtraBold" Text="Project Software" Grid.Row="0" HorizontalAlignment="Center" FontSize="30" Margin="0,20,0,10" FontFamily="Calibri" />
+        </Grid>
+        <Grid Name="tabGrid" Grid.Row="1" Visibility="Collapsed" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Button Name="homeButton" Foreground="White" Background="#3232ff" Content="Home" FontWeight="Bold" Click="homeButton_Click"/>
+            <Button Name="billBookButton" Foreground="White" Background="#3232ff" Content="Bill Book" Grid.Column="1" FontWeight="Bold" Click="billBookButton_Click"/>
+            <Button Name="wareHouseButton" Foreground="white" Content="WareHouse" Background="#3232ff" Grid.Column="2" FontWeight="Bold" Click="wareHouseButton_Click"/>
+            <Button Name="customerButton" Foreground="White" Content="Customer" Grid.Column="3" Background="#3232ff" FontWeight="Bold" Click="customerButton_Click"/>
+            <Button Name="supplyButton" Foreground="White" Content="Supply" Grid.Column="4" Background="#3232ff" FontWeight="Bold" Click="supplyButton_Click"/>
+            <Button Name="logButton" Foreground="white" Content="Log" Grid.Column="5" Background="#3232ff" FontWeight="Bold" Click="logButton_Click"/>
+            <Button Name="ledgerButton" Foreground="White" Content="Ledger" Grid.Column="6" Background="#3232ff" FontWeight="Bold" Click="ledgerButton_Click"/>
+        </Grid>
+
+        <Frame Name="myFrame" Grid.Row="2" Navigated="myFrame_Navigated"/>
+
+
+    </Grid>
+
+
+</Window>

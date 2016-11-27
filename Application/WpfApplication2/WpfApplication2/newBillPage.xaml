@@ -1,0 +1,145 @@
+﻿<Page x:Class="WpfApplication2.newBillPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfApplication2"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="800"
+      Title="newBillPage" Loaded="Page_Loaded">
+    
+   <ScrollViewer  VerticalScrollBarVisibility="Auto"> 
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="New Bill" Grid.Column="1" FontFamily="Calibri" FontSize="22" Margin="40,20,10,10" FontWeight="Bold"/>
+            <StackPanel Grid.Row="1" VerticalAlignment="Top">
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" VerticalAlignment="Top">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.5*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="1.5*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Content="Bill ID :" Grid.Row="0" FontWeight="Bold" HorizontalAlignment="Right" Margin="5,5,5,5" FontSize="16" />
+                    <Label Name="billIDLabel" Content="" Grid.Row="0" Grid.Column="1" FontWeight="Bold" HorizontalAlignment="Left" Margin="5,5,5,5" FontSize="16" />
+
+                    <Label Content="Store Name :" Grid.Row="1" HorizontalAlignment="Right" Margin="5,5,5,5" FontSize="16" />
+                    <ComboBox FontSize="16" Name="storeNameComboBox" Grid.Column="1" Grid.Row="1" Height="30" Width="150" Grid.ColumnSpan="2"  HorizontalAlignment="Left" Margin="5,5,5,5" IsEditable="True"/>
+
+                    <Label Content="Date-Time :" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right" Margin="5" FontSize="16" />
+                    <Label Name="dateTimeLabel"  Content="" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Left" Margin="5" FontSize="16    " />
+
+                </Grid>
+                <Label Margin="5,10,0,14" Content="------ Select Products ------- " FontSize="16" FontWeight="Medium" HorizontalAlignment="Center"/>
+                <StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.8*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Content="Product Name :" Grid.Row="0" HorizontalAlignment="Right" Margin="5,10,5,10" FontSize="16" />
+                            <ComboBox FontSize="16" Name="productNameComboBox" Grid.Column="1" Grid.Row="0" Height="30" Width="190"  HorizontalAlignment="Left" Margin="10,10,5,10" IsEditable="True"/>
+
+                            <Label Content="Quantity(Box) :" Grid.Row="1" HorizontalAlignment="Right" Margin="5,20,5,10" FontSize="16" />
+                            <TextBox Name="quantityTextBox" PreviewTextInput="NumberValidationTextBox" Grid.Column="1" Grid.Row="1" FontSize="18" Height="30" Width="190"  HorizontalAlignment="Left" Margin="10,20,5,10"/>
+
+                            <Button Name="addProductButton" Content="Add" Grid.Row="2" HorizontalAlignment="Left" Height="25" Width="75" Margin="10,20,20,10" Grid.Column="1" Click="addProductButton_Click"/>
+                            <Button Name="removePreviousEntry" Grid.Column="1" Grid.Row="3" Content="Remove Last Entry" HorizontalAlignment="Left" Width="110" Margin="100,20,0,10" Click="removePreviousEntry_Click" IsEnabled="False" />
+                        </Grid>
+                        <DataGrid x:Name="productGrid" AutoGenerateColumns="False" Grid.Column="1" Margin="5,0,40,1" Height="200" ItemsSource="{Binding productBinding}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Product" Width="1*" IsReadOnly="True" Binding="{Binding Path=productName}"/>
+                                <DataGridTextColumn Header="Quantity(Box)" Width="1*" IsReadOnly="True" Binding="{Binding Path=quantity}"/>
+                                <DataGridTextColumn Header="Amt/Box" Width="1*" IsReadOnly="True" Binding="{Binding Path=amtPBox}"/>
+                                <DataGridTextColumn Header="Total Amount" Width="1*" IsReadOnly="True" Binding="{Binding Path=amt}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Right" Margin="0,20,40,0">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Amount :" FontSize="14"/>
+                        <Label Name="totalAmountLabel" Grid.Column="1"   Content="" FontSize="14" HorizontalContentAlignment="Right"/>
+                        <Label Grid.Column="2"  Content="/- Rs" FontSize="14" Width="150"/>
+
+                        <Label Content="Tax(%) :" Grid.Row="1" FontSize="14"/>
+                        <TextBox Name="taxTextBox" PreviewTextInput="taxNumberValidationTextBox" Grid.Column="1" Grid.Row="1" Height="20" HorizontalAlignment="Right" MinWidth="60" Margin="5,0,0,0" TextAlignment="Right" LostFocus="taxTextBox_LostFocus"/>
+                        <Label Grid.Column="2" Grid.Row="1"  Content="%" FontSize="14" Width="150"/>
+
+                        <Label Content="Total Bill :" Grid.Row="2" FontSize="14"/>
+                        <Label Name="taxAmountLabel" Grid.Column="1" Grid.Row="2" Content="" HorizontalContentAlignment="Right" FontSize="14"/>
+                        <Label Grid.Column="2" Grid.Row="2" Content="/- Rs (with Tax)" FontSize="14" Width="150"/>
+                    </Grid>
+                </StackPanel>
+
+                <!--  <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="4*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label Content="Store Name :" HorizontalAlignment="Right" Margin="5" FontSize="16" />
+                <Label Content="Owner :" HorizontalAlignment="Right" Grid.Row="1" Margin="5" FontSize="16"/>
+                <Label Content="Mobile :" HorizontalAlignment="Right" Grid.Row="2" Margin="5" FontSize="16"/>
+                <Label Content="Address :" HorizontalAlignment="Right" Grid.Row="3" Margin="5" FontSize="16"/>
+                <Label Content="Email :" HorizontalAlignment="Right" Grid.Row="4" Margin="5" FontSize="16"/>
+
+                <TextBox Name="storeNameTextBox" Grid.Column="1" Margin="5,5,5,10" Width="200" HorizontalAlignment="Left" FontSize="16"/>
+                <TextBox Name="ownerTextBox"  Grid.Row="1" Grid.Column="1"  Margin="5,5,5,10" Width="200" HorizontalAlignment="Left" FontSize="16"/>
+                <TextBox Name="mobileTextBox"  Grid.Row="2" Grid.Column="1"  Margin="5,5,5,10" Width="200" HorizontalAlignment="Left" FontSize="16" MaxLength="10"/>
+                <TextBox Name="addressTextBox" Grid.Row="3" Grid.Column="1"  Margin="5,5,5,10" Width="200" HorizontalAlignment="Left" FontSize="16"  MinLines="5" TextWrapping="Wrap"/>
+                <TextBox Name="emailTextBox" Grid.Row="4" Grid.Column="1"  Margin="5,5,5,10" Width="200" HorizontalAlignment="Left" FontSize="16"/>
+               <Button Name="yash" Content="Save" Grid.Column="1" Grid.Row="5" Margin="5,20,5,10" Height="25" Width="75" HorizontalAlignment="Left" Click="saveNewCustomerButton_Click"/>
+                <TextBlock Name="errorMessage" Text="" Grid.Column="1" Grid.Row="6" Foreground="Red"/>
+            </Grid>
+
+            </StackPanel> -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button Name="doneButton" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Done" FontSize="18" Width="80" Margin="20" Click="doneButton_Click"/>
+                    <Button Name="cancelButton" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Back" FontSize="18" Width="80" Margin="20" Click="cancelButton_Click"/>
+                </StackPanel>            
+            </StackPanel>
+        </Grid>
+  </ScrollViewer> 
+</Page>

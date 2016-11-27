@@ -1,0 +1,56 @@
+﻿<Page x:Class="WpfApplication2.wareHousePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfApplication2"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Title="wareHousePage" Loaded="Page_Loaded">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="75"/>
+            <ColumnDefinition Width="*"/>
+            
+        </Grid.ColumnDefinitions>
+        <StackPanel VerticalAlignment="Center">
+            <Button Name="addProductButton"  Content="Add" Margin="10,0,20,10" Click="addProductButton_Click"/>
+            <Button Name="refillProductButton" Content="Refill" Margin="10,0,20,10" Click="refillProductButton_Click"/>
+        </StackPanel>
+        <Button Name="updateProductButton" VerticalAlignment="Bottom" Content="Update" Margin="10,0,20,50" Click="updateProductButton_Click"/>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="WareHouse" Margin="5" FontFamily="Arial" FontSize="16"/>
+            <TextBox Name="wareHouseSearch" Text="Search" HorizontalAlignment="Right" VerticalAlignment="Center" Height="18" Width="100" Margin="0,0,40,0" LostFocus="wareHouseSearch_LostFocus"/>
+            <DataGrid x:Name="wareHouseDataGrid" Grid.Row="1" Margin="0,10,40,20" AutoGenerateColumns="False" ItemsSource="{Binding LoadDataBinding}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Path=product_name}" 
+                                        Header="Product Name" 
+                                        Width="1*"                                       
+                                        IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding Path=product_quantity}" 
+                                        Header="Quantity(Box)" 
+                                        Width="1*"
+                                        IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding Path=product_pricepbox}" 
+                                        Header="Price/Box" 
+                                        Width="1*"
+                                        IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding Path=product_manufacturer}" 
+                                        Header="Manufacturer" 
+                                        Width="1*"
+                                        IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding Path=product_qtypbox}" 
+                                        Header="Quantity/Box" 
+                                        Width="1*"
+                                        IsReadOnly="True" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Grid>
+        
+</Page>

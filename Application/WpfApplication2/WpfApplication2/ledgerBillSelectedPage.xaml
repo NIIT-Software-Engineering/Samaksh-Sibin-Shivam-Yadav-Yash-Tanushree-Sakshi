@@ -1,0 +1,114 @@
+﻿<Page x:Class="WpfApplication2.ledgerBillSelectedPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfApplication2"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="800"
+      Title="ledgerBillSelectedPage" Loaded="Page_Loaded">
+
+    <ScrollViewer  VerticalScrollBarVisibility="Auto">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Bill Details" Grid.Column="1" FontFamily="Calibri" FontSize="22" Margin="40,20,10,10" FontWeight="Bold"/>
+            <StackPanel Grid.Row="1" VerticalAlignment="Top">
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" VerticalAlignment="Top">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.5*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="1.5*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Content="Bill ID :" Grid.Row="0" FontWeight="Bold" HorizontalAlignment="Right" Margin="5,5,5,5" FontSize="16" />
+                    <Label Name="billIDLabel" Content="" Grid.Row="0" Grid.Column="1" FontWeight="Bold" HorizontalAlignment="Left" Margin="5,5,5,5" FontSize="16" />
+
+                    <Label Content="Store Name :" Grid.Row="1" HorizontalAlignment="Right" Margin="5,5,5,5" FontSize="16" />
+                    <TextBox Name="storeNameTextBox" TextAlignment="Center" Text="Yash" FontSize="20" Grid.Column="1" Grid.Row="1" IsEnabled="False" Height="30" Width="200" Grid.ColumnSpan="2"  HorizontalAlignment="Left" Margin="5,5,5,5"/>
+                    <Label Content="Status :" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Right" Margin="5,5,5,5" FontSize="16" />
+                    <Label Name="statusLabel"  Content="" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Left" Margin="5" FontSize="16    " />
+                    <Label Content="Date-Time :" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right" Margin="5" FontSize="16" />
+                    <Label Name="dateTimeLabel"  Content="" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Left" Margin="5" FontSize="16    " />
+
+                </Grid>
+                <Label Margin="5,10,0,14" Content="------ Products ------- " FontSize="16" FontWeight="Medium" HorizontalAlignment="Center"/>
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="Auto">
+
+
+
+                    <DataGrid x:Name="ledgerSelectGrid" AutoGenerateColumns="False"  Height="200" Width="600" ItemsSource="{Binding LoadDataBinding}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Product" Width="1*" IsReadOnly="True" Binding="{Binding Path=product_name}"/>
+                            <DataGridTextColumn Header="Quantity(Box)" Width="1*" IsReadOnly="True" Binding="{Binding Path=product_qty}"/>
+                            <DataGridTextColumn Header="Quantity(Box) (WareHouse)" Width="1*" IsReadOnly="True" Binding="{Binding Path=product_quantity}"/>
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="0,20,40,0">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Due Amount : " Margin="10,10,5,10" FontSize="16" HorizontalAlignment="Right"/>
+                        <TextBlock Name="AmtMessageTextBlock"  Grid.Column="1" Margin="10,10,0,10" TextAlignment="Right" FontSize="16" Width="100" TextWrapping="Wrap"/>
+                        <Label Content="Pay : " Grid.Row="1" Margin="10,10,5,10"  FontSize="16" HorizontalAlignment="Right"/>
+                        <TextBox PreviewTextInput="NumberValidationTextBox" Name="AmtPayTextBox" HorizontalAlignment="Right" Margin="0,10,0,10" TextAlignment="Right" Grid.Row="1" Width="100"  Grid.Column="1" FontSize="16"  TextWrapping="Wrap" LostFocus="AmtPayTextBox_LostFocus"/>
+
+                        <Label Content="/-" Margin="0,10,40,10" FontSize="16" Grid.Column="2" HorizontalAlignment="Left"/>
+                        <Label Content="/-" Margin="0,10,5,10" FontSize="16" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Left"/>
+                    </Grid>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Amount :" FontSize="14"/>
+                        <Label Name="totalAmountLabel" Grid.Column="1"   Content="" FontSize="14" HorizontalContentAlignment="Right"/>
+                        <Label Grid.Column="2"  Content="/- Rs" FontSize="14" Width="150"/>
+
+                        <Label Content="Tax(%) :" Grid.Row="1" FontSize="14"/>
+                        <TextBox Name="taxTextBox" IsEnabled="False"  Grid.Column="1" Grid.Row="1" Height="20" HorizontalAlignment="Right" Width="60" Margin="5,0,0,0" TextAlignment="Right"/>
+                        <Label Grid.Column="2" Grid.Row="1"  Content="%" FontSize="14" Width="150"/>
+
+                        <Label Content="Total Bill :" Grid.Row="2" FontSize="14"/>
+                        <Label Name="taxAmountLabel" Grid.Column="1" Grid.Row="2" Content="" HorizontalContentAlignment="Right" FontSize="14"/>
+                        <Label Grid.Column="2" Grid.Row="2" Content="/- Rs (with Tax)" FontSize="14" Width="150"/>
+                    </Grid>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    
+                    <Button Name="payButton" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Pay" FontSize="18" Width="100" Margin="20" Click="payButton_Click"/>
+
+                    <Button Name="backButton" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Back" FontSize="18" Width="80" Margin="20" Click="backButton_Click"/>
+
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</Page>

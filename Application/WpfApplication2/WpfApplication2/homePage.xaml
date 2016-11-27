@@ -1,0 +1,39 @@
+﻿<Page x:Class="WpfApplication2.homePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfApplication2"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="800"
+      Title="Dash Board" Loaded="Page_Loaded">
+
+    <Grid>
+        <TextBlock Name="homeTextBlock" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="46" TextWrapping="Wrap"/>
+        <Button Name="changePasswordButton" Content="Change Username/Password" Click="usepassChangeButton" VerticalAlignment="Bottom" Width="180" HorizontalAlignment="Right" Background="AliceBlue" Margin="0,0,120,30" />
+        <Button Name="aboutButton" Content="About" VerticalAlignment="Bottom" HorizontalAlignment="Right" Background="AliceBlue" Margin="0,0,30,30" Click="aboutButton_Click"/>
+        <!--
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+       
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Button Name="homeButton" Background="LightBlue" Content="Home" FontWeight="Bold"/>
+            <Button Name="billBookButton" Background="LightBlue" Content="Bill Book" Grid.Column="1" FontWeight="Bold"/>
+            <Button Name="wareHouseButton" Content="WareHouse" Background="LightBlue" Grid.Column="2" FontWeight="Bold"/>
+            <Button Name="supplyButton" Content="Supply" Grid.Column="3" Background="LightBlue" FontWeight="Bold"/>
+            <Button Name="logButton" Content="Log" Grid.Column="4" Background="LightBlue" FontWeight="Bold"/>
+            <Button Name="ledgerButton" Content="Ledger" Grid.Column="5" Background="LightBlue" FontWeight="Bold"/>
+        </Grid>
+        -->
+    </Grid>
+</Page>
